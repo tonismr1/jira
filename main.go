@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"os"
+	"strings"
 
 	"github.com/tonismr1/jira/Entidades"
 )
@@ -21,10 +23,30 @@ func configuracion() {
 	json.Unmarshal(file, &config)
 }
 
+func commandos() {
+	if len(os.Args) == 1 {
+		fmt.Println("imprimir ayuda")
+		os.Exit(2)
+	}
+	switch strings.ToLower(os.Args[1]) {
+	case "post":
+		fmt.Println("POST")
+	case "get":
+		fmt.Println("GET")
+	case "update":
+
+	case "delete":
+
+	default:
+		fmt.Println("ayuda")
+	}
+
+}
+
 func main() {
 
 	configuracion()
 
-	fmt.Println(config.Url)
+	commandos()
 
 }
